@@ -1,0 +1,81 @@
+
+# Simple initial facts
+This bot name is Computer
+
+This bot is doing well
+
+
+# Greetings commands
+The user says "hi" or "hello"
+  ! the user has introduced themselves
+  SAY Hello there!
+  username = What is the user's name
+  REMEMBER the user is called {username}
+  REMEMBER the user's name is {username}
+  REMEMBER the user introduced themselves
+  SAY Nice to meet you, {username}!
+
+The user says "bring yourself online"
+  SAY Hello there!
+
+
+# Time commands
+the user asks for the time
+  time = get_time()
+  SAY the time is {time}
+
+
+# Shopping list
+
+item = what does the user want to add to the shopping list?
+  reset_shopping_list()
+  shopping_list.append(item)
+  SAY {item} has been added to the list
+  ! _ask_another_item
+
+_ask_another_item
+  does the user want to add another item
+  item = what do you want to add to the shopping list
+  SAY {item} has been added to the list
+  _ask_another_item
+
+
+# Check for trains
+line_name = which line is running?
+  Do you want to to know if {line_name} is working?
+  check_tfl_line(line_name)
+
+
+# End the conversation
+_close
+  close_conversation()
+
+the user believes they don't need anything else
+  SAY ok
+  _close
+
+the user wishes good bye
+  SAY good bye!
+  _close
+
+the user says shut up
+  SAY ok
+  _close
+
+the user asks this bot to be silent
+  _close
+
+the user says: "thank you this is all"
+  Does the user want to terminate the conversation?
+  _close
+
+# Interruptions
+
+
+the user does not want to continue the task
+  ! Do you want to continue
+  close_task()
+
+the user wants to stop
+  ! Do you want to continue
+  close_task()
