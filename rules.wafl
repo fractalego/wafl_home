@@ -1,22 +1,16 @@
 
 # Simple initial facts
-This bot name is Computer
-
 This bot is doing well
+
+This bot is called Computer
 
 
 # Greetings commands
-The user says "hi" or "hello"
-  ! the user has introduced themselves
-  SAY Hello there!
-  username = What is the user's name
-  REMEMBER the user is called {username}
-  REMEMBER the user's name is {username}
-  REMEMBER the user introduced themselves
-  SAY Nice to meet you, {username}!
-
 The user says "bring yourself online"
   SAY Hello there!
+
+the user asks "How are you"
+  SAY All is good thanks
 
 
 # Time commands
@@ -28,22 +22,49 @@ the user asks for the time
 # Shopping list
 
 item = what does the user want to add to the shopping list?
-  reset_shopping_list()
-  shopping_list.append(item)
+  add_shopping_list(item)
   SAY {item} has been added to the list
   ! _ask_another_item
+  items = get_shopping_list_in_english()
+  SAY the shopping list now contains: {items}
 
 _ask_another_item
   does the user want to add another item
   item = what do you want to add to the shopping list
+  add_shopping_list(item)
   SAY {item} has been added to the list
   _ask_another_item
 
+the user wants to delete the shopping list
+  Do you want to delete the current shopping list
+  reset_shopping_list()
+  SAY The shopping list has been deleted
+
+the user wants to know what is in the shopping list
+  items = get_shopping_list_in_english()
+  SAY The shopping list contains: {items}
+
+"What should I buy"
+  the user wants to know what is in the shopping list
+
 
 # Check for trains
-line_name = which line is running?
-  Do you want to to know if {line_name} is working?
-  check_tfl_line(line_name)
+the user asks about a London tube line
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  check_tfl_line(normname)
+
+the user asks about disruptions on a London tube line
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  check_tfl_line(normname)
+
+linename = which line is running?
+  normname = normalize_name(linename)
+  check_tfl_line(normname)
+
+is the overground running?
+  check_tfl_line("overground")
 
 
 # End the conversation
@@ -54,7 +75,7 @@ the user believes they don't need anything else
   SAY ok
   _close
 
-the user wishes good bye
+the user says good bye
   SAY good bye!
   _close
 
@@ -66,7 +87,6 @@ the user asks this bot to be silent
   _close
 
 the user says: "thank you this is all"
-  Does the user want to terminate the conversation?
   _close
 
 # Interruptions
