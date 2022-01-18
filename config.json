@@ -2,10 +2,10 @@
   "accept_random_facts": false,
   "allow_interruptions": true,
   "voice_hotwords": [
-    "computer"
+      "computer", "marlies", "jubilee line"
   ],
-  "waking_up_word": [
-    "computer"
-  ],
+  "waking_up_word": "computer",
+  "waking_up_sound": true,
+  "deactivate_sound": true,
   "listener_model": "fractalego/personal-speech-to-text-model"
 }

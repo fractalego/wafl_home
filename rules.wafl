@@ -6,11 +6,9 @@ This bot is called Computer
 
 
 # Greetings commands
-The user says "bring yourself online"
+"bring yourself online"
   SAY Hello there!
 
-the user asks "How are you"
-  SAY All is good thanks
 
 
 # Time commands
@@ -18,6 +16,10 @@ the user asks for the time
   time = get_time()
   SAY the time is {time}
 
+
+"What day is it today"
+  date = get_date()
+  SAY Today is {date}
 
 # Shopping list
 
@@ -28,12 +30,23 @@ item = what does the user want to add to the shopping list?
   items = get_shopping_list_in_english()
   SAY the shopping list now contains: {items}
 
+item = what does the user want to remove from the shopping list?
+  remove_from_shopping_list(item)
+  items = get_shopping_list_in_english()
+  SAY the shopping list now contains: {items}
+
 _ask_another_item
   does the user want to add another item
   item = what do you want to add to the shopping list
   add_shopping_list(item)
   SAY {item} has been added to the list
   _ask_another_item
+
+"remove an item from the shopping list"
+  item = What do you want to remove?
+  remove_from_shopping_list(item)
+  items = get_shopping_list_in_english()
+  SAY the shopping list now contains: {items}
 
 the user wants to delete the shopping list
   Do you want to delete the current shopping list
@@ -49,25 +62,55 @@ the user wants to know what is in the shopping list
 
 
 # Check for trains
-the user asks about a London tube line
+
+"How is the {linename} line"
   linename = which line do you want to check?
   normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+"Is the {linename} running?"
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
   check_tfl_line(normname)
 
 the user asks about disruptions on a London tube line
   linename = which line do you want to check?
   normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+"Is the {linename} running?"
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
   check_tfl_line(normname)
 
 linename = which line is running?
   normname = normalize_name(linename)
+  SAY Checking now
   check_tfl_line(normname)
 
 is the overground running?
+  SAY Checking now
   check_tfl_line("overground")
 
 
+# Weather
+
+"How is the weather"
+  check_today_weather()
+
+"How is the weather today"
+  check_today_weather()
+
+"How is the weather tomorrow"
+  check_tomorrow_weather()
+
+
 # End the conversation
+
 _close
   close_conversation()
 
