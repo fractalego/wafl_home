@@ -2,7 +2,7 @@
   "accept_random_facts": false,
   "allow_interruptions": true,
   "voice_hotwords": [
-      "computer", "marlies", "jubilee line"
+      "computer", "jubilee"
   ],
   "waking_up_word": "computer",
   "waking_up_sound": true,

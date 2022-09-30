@@ -1,4 +1,3 @@
-
 # Simple initial facts
 This bot is doing well
 
@@ -9,6 +8,10 @@ This bot is called Computer
 "bring yourself online"
   SAY Hello there!
 
+"Hello"
+  ! This bot has greeted the user
+  SAY Hello there!
+  REMEMBER This bot has greeted the user
 
 
 # Time commands
@@ -27,13 +30,15 @@ item = what does the user want to add to the shopping list?
   add_shopping_list(item)
   SAY {item} has been added to the list
   ! _ask_another_item
-  items = get_shopping_list_in_english()
-  SAY the shopping list now contains: {items}
+
+item = what does the user want to add to the shopping list?
+  add_shopping_list(item)
+  !{item} can be part of a shopping list
+  SAY Please speak more clearly
 
 item = what does the user want to remove from the shopping list?
   remove_from_shopping_list(item)
   items = get_shopping_list_in_english()
-  SAY the shopping list now contains: {items}
 
 _ask_another_item
   does the user want to add another item
@@ -42,11 +47,17 @@ _ask_another_item
   SAY {item} has been added to the list
   _ask_another_item
 
+_ask_another_item
+  does the user want to add another item
+  item = what do you want to add to the shopping list
+  !{item} can be part of a shopping list
+  SAY {item} cannot be part of a shopping list
+  _ask_another_item
+
 "remove an item from the shopping list"
   item = What do you want to remove?
   remove_from_shopping_list(item)
   items = get_shopping_list_in_english()
-  SAY the shopping list now contains: {items}
 
 the user wants to delete the shopping list
   Do you want to delete the current shopping list
@@ -114,31 +125,31 @@ is the overground running?
 _close
   close_conversation()
 
-the user believes they don't need anything else
+INTERRUPTION the user believes they don't need anything else
   SAY ok
   _close
 
-the user says good bye
+INTERRUPTION the user says good bye
   SAY good bye!
   _close
 
-the user says shut up
+INTERRUPTION the user says shut up
   SAY ok
   _close
 
-the user asks this bot to be silent
+INTERRUPTION the user asks this bot to be silent
   _close
 
-the user says: "thank you this is all"
+INTERRUPTION the user says: "thank you this is all"
   _close
 
-# Interruptions
-
-
-the user does not want to continue the task
+INTERRUPTION the user wants to stop
   ! Do you want to continue
   close_task()
 
-the user wants to stop
-  ! Do you want to continue
-  close_task()
+
+# Things to remember
+
+item = what does the user want to remember?
+    SAY I will remember that
+    REMEMEBER {item}

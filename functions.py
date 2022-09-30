@@ -35,6 +35,9 @@ def add_shopping_list(item):
 
 
 def remove_from_shopping_list(item):
+    if not shopping_list:
+        return False
+
     extracted, score = process.extract(item, shopping_list, limit=1)[0]
     if score < 60:
         {f"% SAY I did not quite get the item to remove %"}
@@ -75,7 +78,7 @@ def normalize_name(linename):
     print("EXTRACTED!", extracted, score)
     if score < 60:
         {f"% SAY I did not quite get the line name %"}
-        return
+        return False
 
     return extracted
 
