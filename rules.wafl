@@ -28,31 +28,10 @@ the user asks for the time
 
 item = what does the user want to add to the shopping list?
   add_shopping_list(item)
-  SAY {item} has been added to the list
-  ! _ask_another_item
-
-item = what does the user want to add to the shopping list?
-  add_shopping_list(item)
-  !{item} can be part of a shopping list
-  SAY Please speak more clearly
 
 item = what does the user want to remove from the shopping list?
   remove_from_shopping_list(item)
-  items = get_shopping_list_in_english()
 
-_ask_another_item
-  does the user want to add another item
-  item = what do you want to add to the shopping list
-  add_shopping_list(item)
-  SAY {item} has been added to the list
-  _ask_another_item
-
-_ask_another_item
-  does the user want to add another item
-  item = what do you want to add to the shopping list
-  !{item} can be part of a shopping list
-  SAY {item} cannot be part of a shopping list
-  _ask_another_item
 
 "remove or delete an item from the shopping list"
   item = What do you want to remove?
@@ -138,6 +117,9 @@ INTERRUPTION the user says shut up
   _close
 
 INTERRUPTION the user asks this bot to be silent
+  _close
+
+INTERRUPTION the user says: "thank you"
   _close
 
 INTERRUPTION the user says: "thank you this is all"

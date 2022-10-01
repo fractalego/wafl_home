@@ -16,7 +16,6 @@ lines_dict = {
 }
 
 
-
 _logger = logging.getLogger(__file__)
 
 shopping_list = json.load(open("shopping_list.json"))
@@ -32,6 +31,13 @@ def get_shopping_list_in_english():
 def add_shopping_list(item):
     shopping_list.append(item)
     json.dump(shopping_list, open("shopping_list.json", "w"))
+    {f"% SAY {item} has been added to the shopping list%"}
+    while {"% Do you want to add anything else  %"}:
+        item = {"% What do you want to add?%"}
+        shopping_list.append(item)
+        json.dump(shopping_list, open("shopping_list.json", "w"))
+        {f"% SAY {item} has been added to the shopping list%"}
+        {"% ERASE MEMORY %"}
 
 
 def remove_from_shopping_list(item):
@@ -45,11 +51,11 @@ def remove_from_shopping_list(item):
 
     if not {f"% Do you want to remove {extracted} from the shopping list? %"}:
         return False
-    
+
     shopping_list.remove(extracted)
     json.dump(shopping_list, open("shopping_list.json", "w"))
 
-    
+
 def reset_shopping_list():
     global shopping_list
     shopping_list = []
@@ -59,6 +65,7 @@ def reset_shopping_list():
 def get_time():
     now = datetime.now()
     return now.strftime("%H,%M")
+
 
 def get_date():
     now = datetime.now()
@@ -82,8 +89,9 @@ def normalize_name(linename):
 
     return extracted
 
+
 def check_tfl_line(linename):
-    
+
     if linename not in lines_dict.keys():
         {f"% SAY I cannot find a line named {linename} %"}
         return
@@ -106,45 +114,65 @@ def check_today_weather():
     longitude = "-0.1426"
     secrets = json.load(open("secrets.json"))
 
-    result = requests.get(f"https://rgw.5878-e94b1c46.eu-gb.apiconnect.appdomain.cloud/metoffice/production/v0/forecasts/point/daily?excludeParameterMetadata=true&includeLocationName=true&latitude={latitude}&longitude={longitude}",
-                      headers={"X-IBM-Client-Id": secrets['key'],
-                               "X-IBM-Client-Secret": secrets['secret']})
+    result = requests.get(
+        f"https://rgw.5878-e94b1c46.eu-gb.apiconnect.appdomain.cloud/metoffice/production/v0/forecasts/point/daily?excludeParameterMetadata=true&includeLocationName=true&latitude={latitude}&longitude={longitude}",
+        headers={
+            "X-IBM-Client-Id": secrets["key"],
+            "X-IBM-Client-Secret": secrets["secret"],
+        },
+    )
     data = result.json()
-    if 'features' not in data:
+    if "features" not in data:
         {"% SAY There is a connection error to the weather API. Please try later. %"}
         return
-    
-    today = datetime.now().strftime("%Y-%m-%d")
-    
-    for item in data['features'][0]['properties']['timeSeries']:
-        if today in item['time']: 
-            {f"% SAY Today the temperature should be between {int(item['dayLowerBoundMaxTemp'])} and {int(item['dayUpperBoundMaxTemp'])}. %"}
-            if item['dayProbabilityOfPrecipitation'] != 0:
-                {f"% SAY The probability of rain is {item['dayProbabilityOfPrecipitation']} percent. %"}
 
-            if item['dayProbabilityOfSnow'] != 0:
-                {f"% SAY The probability of snow is {item['dayProbabilityOfSnow']} percent. %"}
+    today = datetime.now().strftime("%Y-%m-%d")
+
+    for item in data["features"][0]["properties"]["timeSeries"]:
+        if today in item["time"]:
+            {
+                f"% SAY Today the temperature should be between {int(item['dayLowerBoundMaxTemp'])} and {int(item['dayUpperBoundMaxTemp'])}. %"
+            }
+            if item["dayProbabilityOfPrecipitation"] != 0:
+                {
+                    f"% SAY The probability of rain is {item['dayProbabilityOfPrecipitation']} percent. %"
+                }
+
+            if item["dayProbabilityOfSnow"] != 0:
+                {
+                    f"% SAY The probability of snow is {item['dayProbabilityOfSnow']} percent. %"
+                }
+
 
 def check_tomorrow_weather():
     latitude = "51.5390"
     longitude = "-0.1426"
     secrets = json.load(open("secrets.json"))
 
-    result = requests.get(f"https://rgw.5878-e94b1c46.eu-gb.apiconnect.appdomain.cloud/metoffice/production/v0/forecasts/point/daily?excludeParameterMetadata=true&includeLocationName=true&latitude={latitude}&longitude={longitude}",
-                      headers={"X-IBM-Client-Id": secrets['key'],
-                               "X-IBM-Client-Secret": secrets['secret']})
+    result = requests.get(
+        f"https://rgw.5878-e94b1c46.eu-gb.apiconnect.appdomain.cloud/metoffice/production/v0/forecasts/point/daily?excludeParameterMetadata=true&includeLocationName=true&latitude={latitude}&longitude={longitude}",
+        headers={
+            "X-IBM-Client-Id": secrets["key"],
+            "X-IBM-Client-Secret": secrets["secret"],
+        },
+    )
     data = result.json()
-    if 'features' not in data:
+    if "features" not in data:
         {"% SAY There is a connection error to the weather API. Please try later. %"}
         return
 
     tomorrow = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
-    for item in data['features'][0]['properties']['timeSeries']:
-        if tomorrow in item['time']:
-            {f"% SAY Tomorrow the temperature should be between {int(item['dayLowerBoundMaxTemp'])} and {int(item['dayUpperBoundMaxTemp'])}. %"}
-            if item['dayProbabilityOfPrecipitation'] != 0:
-                {f"% SAY The probability of rain is {item['dayProbabilityOfPrecipitation']} percent. %"}
+    for item in data["features"][0]["properties"]["timeSeries"]:
+        if tomorrow in item["time"]:
+            {
+                f"% SAY Tomorrow the temperature should be between {int(item['dayLowerBoundMaxTemp'])} and {int(item['dayUpperBoundMaxTemp'])}. %"
+            }
+            if item["dayProbabilityOfPrecipitation"] != 0:
+                {
+                    f"% SAY The probability of rain is {item['dayProbabilityOfPrecipitation']} percent. %"
+                }
 
-            if item['dayProbabilityOfSnow'] != 0:
-                {f"% SAY The probability of snow is {item['dayProbabilityOfSnow']} percent. %"}
-
+            if item["dayProbabilityOfSnow"] != 0:
+                {
+                    f"% SAY The probability of snow is {item['dayProbabilityOfSnow']} percent. %"
+                }
