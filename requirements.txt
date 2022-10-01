@@ -1,0 +1,2 @@
+wafl==0.0.3
+fuzzywuzzy

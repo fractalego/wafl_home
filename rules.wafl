@@ -54,7 +54,7 @@ _ask_another_item
   SAY {item} cannot be part of a shopping list
   _ask_another_item
 
-"remove an item from the shopping list"
+"remove or delete an item from the shopping list"
   item = What do you want to remove?
   remove_from_shopping_list(item)
   items = get_shopping_list_in_english()
