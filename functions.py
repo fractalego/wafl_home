@@ -64,7 +64,7 @@ def reset_shopping_list():
 
 def get_time():
     now = datetime.now()
-    return now.strftime("%H,%M")
+    return now.strftime("%H; %M")
 
 
 def get_date():
@@ -85,7 +85,8 @@ def normalize_name(linename):
     print("EXTRACTED!", extracted, score)
     if score < 60:
         {f"% SAY I did not quite get the line name %"}
-        return False
+        linename = {"% Which line do you want to check? %"}
+        return {f"% normalize_name('{linename}') %"}
 
     return extracted
 

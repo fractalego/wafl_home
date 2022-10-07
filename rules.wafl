@@ -3,6 +3,10 @@ This bot is doing well
 
 This bot is called Computer
 
+This bot is ok.
+
+This bot is here to answer the user.
+
 
 # Greetings commands
 "bring yourself online"
@@ -108,7 +112,7 @@ INTERRUPTION the user believes they don't need anything else
   SAY ok
   _close
 
-INTERRUPTION the user says good bye
+INTERRUPTION the user says "good bye"
   SAY good bye!
   _close
 
