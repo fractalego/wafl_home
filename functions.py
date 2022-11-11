@@ -36,6 +36,7 @@ def add_shopping_list(item):
         if not f"% Do you really want to add {item}?%":
             return False
 
+    shopping_list = json.load(open("shopping_list.json"))
     shopping_list.append(item)
     json.dump(shopping_list, open("shopping_list.json", "w"))
     {f"% SAY {item} has been added to the shopping list%"}
