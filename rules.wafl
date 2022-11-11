@@ -40,7 +40,7 @@ item = what does the user want to remove from the shopping list?
 "remove or delete an item from the shopping list"
   item = What do you want to remove?
   remove_from_shopping_list(item)
-  items = get_shopping_list_in_english()
+  SAY item removed
 
 the user wants to delete the shopping list
   Do you want to delete the current shopping list
@@ -97,6 +97,9 @@ is the overground running?
   check_today_weather()
 
 "How is the weather today"
+  check_today_weather()
+
+"What is the weather forecast"
   check_today_weather()
 
 "How is the weather tomorrow"
