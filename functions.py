@@ -29,6 +29,13 @@ def get_shopping_list_in_english():
 
 
 def add_shopping_list(item):
+    if "shopping" in item.lower():
+        return False
+
+    if not "% {item} can be part of a shopping list %":
+        if not f"% Do you really want to add {item}?%":
+            return False
+
     shopping_list.append(item)
     json.dump(shopping_list, open("shopping_list.json", "w"))
     {f"% SAY {item} has been added to the shopping list%"}
