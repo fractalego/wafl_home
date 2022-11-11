@@ -32,7 +32,7 @@ def add_shopping_list(item):
     if "shopping" in item.lower():
         return False
 
-    if not "% {item} can be part of a shopping list %":
+    if not f"% {item} can be part of a shopping list %":
         if not f"% Do you really want to add {item}?%":
             return False
 
@@ -41,6 +41,10 @@ def add_shopping_list(item):
     {f"% SAY {item} has been added to the shopping list%"}
     while {"% Do you want to add anything else  %"}:
         item = {"% What do you want to add?%"}
+        if not f"% {item} can be part of a shopping list %":
+            if not f"% Do you really want to add {item}?%":
+                continue
+
         shopping_list.append(item)
         json.dump(shopping_list, open("shopping_list.json", "w"))
         {f"% SAY {item} has been added to the shopping list%"}
@@ -71,7 +75,7 @@ def reset_shopping_list():
 
 def get_time():
     now = datetime.now()
-    return now.strftime("%H %M")
+    return now.strftime("%M past %H")
 
 
 def get_date():
