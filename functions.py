@@ -18,10 +18,9 @@ lines_dict = {
 
 _logger = logging.getLogger(__file__)
 
-shopping_list = json.load(open("shopping_list.json"))
-
 
 def get_shopping_list_in_english():
+    shopping_list = json.load(open("shopping_list.json"))
     if not shopping_list:
         return "Nothing"
 
@@ -32,9 +31,9 @@ def add_shopping_list(item):
     if "shopping" in item.lower():
         return False
 
-    if not f"% {item} can be part of a shopping list %":
-        if not f"% Do you really want to add {item}?%":
-            return False
+#    if not {f"% {item} can be part of a shopping list %"}:
+#        if not {f"% Do you really want to add {item}?%"}:
+#            return False
 
     shopping_list = json.load(open("shopping_list.json"))
     shopping_list.append(item)
@@ -53,7 +52,9 @@ def add_shopping_list(item):
 
 
 def remove_from_shopping_list(item):
+    shopping_list = json.load(open("shopping_list.json"))
     if not shopping_list:
+        "% SAY the shopping list is already empty.%"
         return False
 
     extracted, score = process.extract(item, shopping_list, limit=1)[0]
@@ -69,7 +70,6 @@ def remove_from_shopping_list(item):
 
 
 def reset_shopping_list():
-    global shopping_list
     shopping_list = []
     json.dump(shopping_list, open("shopping_list.json", "w"))
 
@@ -121,7 +121,7 @@ def check_tfl_line(linename):
 
     {f"% SAY The {linename} line is running normally %"}
 
-    
+
 
 def check_today_weather():
     latitude = "51.5390"
@@ -129,7 +129,7 @@ def check_today_weather():
     today = datetime.now().strftime("%Y-%m-%d")
     check_weather_lat_long(latitude, longitude, today)
 
-    
+
 def check_tomorrow_weather():
     latitude = "51.5390"
     longitude = "-0.1426"
