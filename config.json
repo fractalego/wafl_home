@@ -5,8 +5,8 @@
   "waking_up_sound": true,
   "deactivate_sound": true,
   "deny_sound": true,
-  "listener_model": "fractalego/personal-whisper-small.en-model",
-  "listener_hotword_logp": -6,
-  "listener_volume_threshold": 0.65,
+  "listener_model": "fractalego/personal-whisper-medium.en-model",
+  "listener_hotword_logp": -5.5,
+  "listener_volume_threshold": 0.63,
   "listener_silence_timeout": 0.7
 }

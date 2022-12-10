@@ -60,7 +60,7 @@ def remove_from_shopping_list(item):
     extracted, score = process.extract(item, shopping_list, limit=1)[0]
     if score < 60:
         {f"% SAY I did not quite get the item to remove %"}
-        return
+        return False
 
     if not {f"% Do you want to remove {extracted} from the shopping list? %"}:
         return False
@@ -107,7 +107,7 @@ def check_tfl_line(linename):
 
     if linename not in lines_dict.keys():
         {f"% SAY I cannot find a line named {linename} %"}
-        return
+        return False
 
     result = requests.get(
         f"https://api.tfl.gov.uk/Line/Mode/{lines_dict[linename]}/disruption"
@@ -117,7 +117,7 @@ def check_tfl_line(linename):
     for item in data:
         if linename in item["description"].lower():
             {f"% SAY There is some disruption on the {linename} line. %"}
-            return
+            return False
 
     {f"% SAY The {linename} line is running normally %"}
 
@@ -150,7 +150,7 @@ def check_weather_lat_long(latitude, longitude, day):
     data = result.json()
     if "features" not in data:
         {"% SAY There is a connection error to the weather API. Please try later. %"}
-        return
+        return False
 
 
     for item in data["features"][0]["properties"]["timeSeries"]:
