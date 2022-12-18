@@ -31,25 +31,23 @@ def add_shopping_list(item):
     if "shopping" in item.lower():
         return False
 
-#    if not {f"% {item} can be part of a shopping list %"}:
-#        if not {f"% Do you really want to add {item}?%"}:
-#            return False
+    if "add " in item.lower():
+        item = item.lower().replace("add ", "")
+
+    if not {f"% the user adds something to a grocery list -> The user adds {item} to a list %"}:
+        if not {f"% Do you really want to add {item}?%"}:
+            return False
 
     shopping_list = json.load(open("shopping_list.json"))
-    shopping_list.append(item)
+    if " and " in item:
+        items_to_add = item.split(" and ")
+        shopping_list.extend(items_to_add)
+
+    else:
+        shopping_list.append(item)
+        
     json.dump(shopping_list, open("shopping_list.json", "w"))
     {f"% SAY {item} has been added to the shopping list%"}
-    while {"% Do you want to add anything else  %"}:
-        item = {"% What do you want to add?%"}
-        if not f"% {item} can be part of a shopping list %":
-            if not f"% Do you really want to add {item}?%":
-                continue
-
-        shopping_list.append(item)
-        json.dump(shopping_list, open("shopping_list.json", "w"))
-        {f"% SAY {item} has been added to the shopping list%"}
-        {"% ERASE MEMORY %"}
-
 
 def remove_from_shopping_list(item):
     shopping_list = json.load(open("shopping_list.json"))
@@ -69,6 +67,27 @@ def remove_from_shopping_list(item):
     json.dump(shopping_list, open("shopping_list.json", "w"))
 
 
+def remove_first_item_from_shopping_list():
+    shopping_list = json.load(open("shopping_list.json"))
+    if not shopping_list:
+        "% SAY the shopping list is already empty.%"
+        return False
+
+    shopping_list.pop(0)
+    json.dump(shopping_list, open("shopping_list.json", "w"))
+
+
+def remove_last_item_from_shopping_list():
+    shopping_list = json.load(open("shopping_list.json"))
+    if not shopping_list:
+        "% SAY the shopping list is already empty.%"
+        return False
+
+    shopping_list.pop(-1)
+    json.dump(shopping_list, open("shopping_list.json", "w"))
+
+    
+
 def reset_shopping_list():
     shopping_list = []
     json.dump(shopping_list, open("shopping_list.json", "w"))
@@ -76,7 +95,13 @@ def reset_shopping_list():
 
 def get_time():
     now = datetime.now()
-    return now.strftime("%M past %H")
+    minutes = int(now.strftime("%M"))
+    hour = int(now.strftime("%H"))
+    if minutes < 30:
+        return f"{minutes} past {hour}"
+
+    else:
+        return f"{minutes} to {hour + 1}"
 
 
 def get_date():

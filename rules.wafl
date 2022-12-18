@@ -5,7 +5,7 @@ This bot is called Computer
 
 This bot is doing okay.
 
-This bot is here to answer the user.
+This bot is here to answer the user unless asked to be silent.
 
 
 # Greetings commands
@@ -23,7 +23,6 @@ the user asks for the time
   time = get_time()
   SAY the time is {time}
 
-
 "What day is it today"
   date = get_date()
   SAY Today is {date}
@@ -35,7 +34,6 @@ item = what does the user want to add to the shopping list?
 
 item = what does the user want to remove from the shopping list?
   remove_from_shopping_list(item)
-
 
 "remove or delete an item from the shopping list"
   item = What do you want to remove?
@@ -51,8 +49,34 @@ the user wants to know what is in the shopping list
   items = get_shopping_list_in_english()
   SAY The shopping list contains: {items}
 
+the user wants to add something
+  item = what does the user want to add?
+  list_name = which list does the user want to add to?
+  add {item} to {list_name}
+
+the user wants to remove something
+  item = what does the user want to remove?
+  list_name = which list does the user remove from?
+  remove {item} from {list_name}
+
 "What should I buy"
   the user wants to know what is in the shopping list
+
+the user wants to remove the first item in the shopping list
+  remove_first_item_from_shopping_list()
+  SAY item removed
+
+the user wants to remove the first item in a list
+  list_name = which list does the user remove from?
+  the user wants to remove the first item in {list_name}
+
+the user wants to remove the last item in the shopping list
+  remove_last_item_from_shopping_list()
+  SAY item removed
+
+the user wants to remove the last item in a list
+  list_name = which list does the user remove from?
+  the user wants to remove the last item in {list_name}
 
 
 # Check for trains
@@ -119,7 +143,7 @@ INTERRUPTION the user says "good bye"
   SAY good bye!
   _close
 
-INTERRUPTION the user says shut up
+INTERRUPTION the user says to shut up
   SAY ok
   _close
 
@@ -138,7 +162,7 @@ INTERRUPTION the user wants to stop
 
 
 # Things to remember
-
-item = what does the user want to remember?
-    SAY I will remember that
-    REMEMEBER {item}
+the user wants you to remember 
+  sentence = What do you want me to remember?
+  REMEMBER sentence
+  SAY I will remember that {sentence}
