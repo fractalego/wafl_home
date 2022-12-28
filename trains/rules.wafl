@@ -1,0 +1,34 @@
+# Check for trains
+
+"How is the {linename} line"
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+"Is the {linename} running?"
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+the user asks about disruptions on a London tube line
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+"Is the {linename} running?"
+  linename = which line do you want to check?
+  normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+linename = which line is running?
+  normname = normalize_name(linename)
+  SAY Checking now
+  check_tfl_line(normname)
+
+is the overground running?
+  SAY Checking now
+  check_tfl_line("overground")
