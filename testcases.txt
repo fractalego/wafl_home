@@ -1,8 +1,8 @@
 test online
-  user> Bring yourself online
-  bot> Hello there!
+  user: Bring yourself online
+  bot: Hello there!
 
 
 test good bye
-  user> Good bye
-  bot> Good bye!
+  user: Good bye
+  bot: Good bye!

@@ -42,6 +42,7 @@ def add_shopping_list(item):
         
     json.dump(shopping_list, open("shopping_list.json", "w"))
     {f"% SAY {item} has been added to the shopping list%"}
+    return True
 
 def remove_from_shopping_list(item):
     shopping_list = json.load(open("shopping_list.json"))
@@ -59,7 +60,7 @@ def remove_from_shopping_list(item):
 
     shopping_list.remove(extracted)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
 
 def remove_first_item_from_shopping_list():
     shopping_list = json.load(open("shopping_list.json"))
@@ -69,7 +70,7 @@ def remove_first_item_from_shopping_list():
 
     shopping_list.pop(0)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
 
 def remove_last_item_from_shopping_list():
     shopping_list = json.load(open("shopping_list.json"))
@@ -79,9 +80,10 @@ def remove_last_item_from_shopping_list():
 
     shopping_list.pop(-1)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
     
 
 def reset_shopping_list():
     shopping_list = []
     json.dump(shopping_list, open("shopping_list.json", "w"))
+    return True
