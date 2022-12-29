@@ -1,5 +1,7 @@
 import requests
 
+from datetime import datetime, timedelta
+
 
 def check_today_weather():
     latitude = "51.5390"
