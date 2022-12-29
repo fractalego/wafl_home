@@ -28,7 +28,7 @@ def add_shopping_list(item):
     if "add " in item.lower():
         item = item.lower().replace("add ", "")
 
-    if not {f"% the user adds something to a grocery list -> The user adds {item} to a list %"}:
+    if not {f"% The user adds {item} to a list :- the user adds something to a grocery list %"}:
         if not {f"% Do you really want to add {item}?%"}:
             return False
 

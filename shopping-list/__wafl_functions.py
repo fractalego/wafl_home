@@ -28,7 +28,7 @@ def add_shopping_list(item, inference, task_memory):
     if "add " in item.lower():
         item = item.lower().replace("add ", "")
 
-    if not inference.get_inference_answer(f" the user adds something to a grocery list -> The user adds {item} to a list ", task_memory):
+    if not inference.get_inference_answer(f" The user adds {item} to a list :- the user adds something to a grocery list ", task_memory):
         if not inference.get_inference_answer(f" Do you really want to add {item}?", task_memory):
             return False
 
@@ -42,6 +42,7 @@ def add_shopping_list(item, inference, task_memory):
         
     json.dump(shopping_list, open("shopping_list.json", "w"))
     inference.get_inference_answer(f" SAY {item} has been added to the shopping list", task_memory)
+    return True
 
 def remove_from_shopping_list(item, inference, task_memory):
     shopping_list = json.load(open("shopping_list.json"))
@@ -59,7 +60,7 @@ def remove_from_shopping_list(item, inference, task_memory):
 
     shopping_list.remove(extracted)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
 
 def remove_first_item_from_shopping_list(inference, task_memory):
     shopping_list = json.load(open("shopping_list.json"))
@@ -69,7 +70,7 @@ def remove_first_item_from_shopping_list(inference, task_memory):
 
     shopping_list.pop(0)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
 
 def remove_last_item_from_shopping_list(inference, task_memory):
     shopping_list = json.load(open("shopping_list.json"))
@@ -79,9 +80,10 @@ def remove_last_item_from_shopping_list(inference, task_memory):
 
     shopping_list.pop(-1)
     json.dump(shopping_list, open("shopping_list.json", "w"))
-
+    return True
     
 
 def reset_shopping_list(inference, task_memory):
     shopping_list = []
     json.dump(shopping_list, open("shopping_list.json", "w"))
+    return True
