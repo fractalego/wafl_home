@@ -8,5 +8,7 @@
   "listener_model": "fractalego/personal-whisper-medium.en-model",
   "listener_hotword_logp": -5.5,
   "listener_volume_threshold": 0.63,
-  "listener_silence_timeout": 0.7
+  "listener_silence_timeout": 0.7,
+  "model_host": "127.0.0.1",
+  "model_port": 8080
 }
