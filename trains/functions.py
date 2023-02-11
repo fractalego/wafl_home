@@ -15,6 +15,7 @@ lines_dict = {
 
 
 def normalize_name(linename):
+    print(linename)
     extracted, score = process.extract(linename, lines_dict.keys(), limit=1)[0]
     print("EXTRACTED!", extracted, score)
     if score < 60:
