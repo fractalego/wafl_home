@@ -39,6 +39,6 @@ def check_tfl_line(linename, inference, task_memory):
     for item in data:
         if linename in item["description"].lower():
             inference.get_inference_answer(f" SAY There is some disruption on the {linename} line. ", task_memory)
-            return False
+            return
 
     inference.get_inference_answer(f" SAY The {linename} line is running normally ", task_memory)

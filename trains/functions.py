@@ -15,9 +15,7 @@ lines_dict = {
 
 
 def normalize_name(linename):
-    print(linename)
     extracted, score = process.extract(linename, lines_dict.keys(), limit=1)[0]
-    print("EXTRACTED!", extracted, score)
     if score < 60:
         f"% SAY I did not quite get the line name %"
         linename = {"% Which line do you want to check? %"}
@@ -39,6 +37,6 @@ def check_tfl_line(linename):
     for item in data:
         if linename in item["description"].lower():
             f"% SAY There is some disruption on the {linename} line. %"
-            return False
+            return
 
     f"% SAY The {linename} line is running normally %"
