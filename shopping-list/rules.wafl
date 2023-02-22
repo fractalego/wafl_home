@@ -25,12 +25,12 @@ the user wants to know what is in the shopping list
 the user wants to add something
   item = what does the user want to add?
   list_name = which list?
-  add {item} to {list_name}
+  the user wants to add {item} to {list_name}
 
 the user wants to remove something
   item = what does the user want to remove?
   list_name = which list?
-  remove {item} from {list_name}
+  the user wants to remove {item} from {list_name}
 
 "What should I buy"
   the user wants to know what is in the shopping list
