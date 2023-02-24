@@ -19,3 +19,7 @@ is the overground running?
 the user asks about the status for the underground
   SAY Checking the status now
   process_status()
+
+the user asks about tube disruptions
+  SAY Checking the status now
+  process_status()
