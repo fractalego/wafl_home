@@ -15,3 +15,7 @@ linename = which line is running?
 is the overground running?
   SAY Checking now
   check_tfl_line("overground")
+
+the user asks about the status for the underground
+  SAY Checking the status now
+  process_status()
