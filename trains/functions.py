@@ -40,3 +40,16 @@ def check_tfl_line(linename):
             return
 
     f"% SAY The {linename} line is running normally %"
+
+
+def process_status():
+    for linename in lines_dict.keys():
+        result = requests.get(
+            f"https://api.tfl.gov.uk/Line/Mode/{lines_dict[linename]}/disruption"
+        )
+        data = result.json()
+        for item in data:
+            if linename in item["description"].lower():
+                f"% SAY There is some disruption on the {linename} line. %"
+
+    "% SAY All other lines are running normally %"
