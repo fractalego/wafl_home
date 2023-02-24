@@ -18,8 +18,8 @@ def normalize_name(linename):
     extracted, score = process.extract(linename, lines_dict.keys(), limit=1)[0]
     if score < 60:
         f"% SAY I did not quite get the line name %"
-        linename = {"% Which line do you want to check? %"}
-        return {f"% normalize_name('{linename}') %"}
+        linename = "% Which line do you want to check? %"
+        return normalize_name(linename)
 
     return extracted
 
