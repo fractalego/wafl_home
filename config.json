@@ -9,6 +9,6 @@
   "listener_hotword_logp": -5.5,
   "listener_volume_threshold": 0.4,
   "listener_silence_timeout": 0.7,
-  "model_host": "127.0.0.1",
+  "model_host": "aragorn",
   "model_port": 8080
 }
