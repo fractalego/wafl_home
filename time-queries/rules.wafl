@@ -1,7 +1,7 @@
 # Time commands
-# the user asks for the time
-#  time = get_time()
-#  SAY the time is {time}
+"what time is it now"
+ time = get_time()
+ SAY the time is {time}
 
 "What day is it today"
   date = get_date()

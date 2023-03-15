@@ -1,6 +1,6 @@
 #using facts
 #using greetings
-#using mytime
+#using time-queries
 #using shopping-list
 #using trains
 #using weather
