@@ -5,6 +5,7 @@
 #using trains
 #using weather
 #using interruptions
+#using reminders
 
 # Things to remember
 the user wants you to remember 
