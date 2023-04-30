@@ -14,7 +14,6 @@ def get_clock():
     now = datetime.now()
     minutes = int(now.strftime("%M"))
     hour = int(now.strftime("%H"))
-    print("Logging time", hour, minutes)
     return f"The time is {hour}, {minutes} "
 
 
